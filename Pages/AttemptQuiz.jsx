@@ -14,11 +14,12 @@ const AttemptQuiz = () => {
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
-
   useEffect(() => {
     const fetchQuiz = async () => {
+      const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://quizzify-me-backend.onrender.com';
+      
       try {
-        const response = await axios.get(`http://localhost:3000/api/questions/${quizId}`);
+        const response = await axios.get(`${baseUrl}/api/questions/${quizId}`);
         setQuestions(response.data.questions);
       } catch (error) {
         console.error('Error fetching quiz:', error);
@@ -56,8 +57,10 @@ const AttemptQuiz = () => {
         }),
       };
 
+      const baseUrl =
+        process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://quizzify-me-backend.onrender.com';
       try {
-        const res = await axios.post(`http://localhost:3000/api/attempts`, attemptPayload);
+        const res = await axios.post(`${baseUrl}/api/attempts`, attemptPayload);
         setResult(res.data);
         setShowOverlay(true);
       } catch (error) {
