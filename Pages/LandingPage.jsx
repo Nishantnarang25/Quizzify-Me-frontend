@@ -100,7 +100,7 @@ export default function LandingPage() {
                 </h1>
                 <button
                     onClick={() => setShowLogin(true)}
-                    className="text-white border border-white px-4 py-2 rounded-md hover:bg-white hover:text-[#1F1F1F] transition-all duration-300 text-sm sm:text-base"
+                    className="hidden sm:inline-block text-white border border-white px-4 py-2 rounded-md hover:bg-white hover:text-[#1F1F1F] transition-all duration-300 text-sm sm:text-base"
                 >
                     Enter the Arena
                 </button>
@@ -241,7 +241,7 @@ export default function LandingPage() {
                     </p>
                 </div>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 text-center">
                     {[
                         ["🛠️", "Create or Join", "Craft your own quiz or hop into a live battle instantly."],
                         ["🎨", "Customize", "Pick topics, set timers, choose difficulty — your quiz, your rules."],
@@ -287,7 +287,7 @@ export default function LandingPage() {
 
                 >
                     Unleash your creativity — set questions, options, and correct answers, then share your custom quizzes with friends for epic challenges!
-                    <br /><br/>
+                    <br /><br />
                     <span className="text-[#FBE483] font-medium ">
                         You’ll get a unique quiz link — just send it to your friends and let the showdown begin!
                     </span>
@@ -383,12 +383,15 @@ export default function LandingPage() {
                             {usernameTaken && (
                                 <p className="text-red-400 text-sm">That name’s taken — try another!</p>
                             )}
-                            <button
-                                type="submit"
-                                className="bg-gradient-to-r from-[#FBE483] to-[#F179E1] text-black font-bold px-6 py-2 rounded-full hover:scale-105 transition"
-                            >
-                                Enter the Arena ✨
-                            </button>
+                            <div className="hidden sm:block">
+                                <button
+                                    onClick={() => setShowLogin(true)}
+
+                                    className="bg-gradient-to-r from-[#FBE483] to-[#F179E1] text-black font-bold px-6 py-2 rounded-full hover:scale-105 transition"
+                                >
+                                    Enter the Arena ✨
+                                </button>
+                            </div>
                         </form>
                     </motion.div>
                 </div>
