@@ -168,7 +168,7 @@ export default function LandingPage() {
                 >
                     Welcome to <span className="text-[#F179E1] font-semibold">Quizzify Me</span> — where you create, play, and battle in epic quiz competitions.
                     <br />
-                    esign your own quizzes, challenge friends in real-time battles, and climb the leaderboard together.                    <br />
+                    Design your own quizzes, challenge friends in real-time battles, and climb the leaderboard together.                    <br />
                     Designed for students, teams, and streamers — let the games begin.
                 </motion.p>
 
@@ -184,52 +184,58 @@ export default function LandingPage() {
             </section>
 
             {/* Experience Steps */}
-            <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-12 text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white">
-                    🧩 Dive Into The Experience
-                </h2>
+<section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-12 text-center">
+    <h2 className="text-3xl sm:text-4xl font-bold text-white">
+        🧩 Dive Into The Experience
+    </h2>
 
-                {[
-                    {
-                        title: "🎨 Create Your Quiz Room",
-                        desc: "Build your quiz – write your own questions, mark correct answers, and name your battleground.",
-                        img: "/create quiz room.png",
-                    },
-                    {
-                        title: "🚀 Enter the Quiz Arena",
-                        desc: "Join your friends or random players in an intense real-time quiz face-off.",
-                        img: "/enter quiz room.png",
-                    },
-                    {
-                        title: "🏁 See Your Glory",
-                        desc: "Review your results, compare stats, and challenge again to climb the leaderboard.",
-                        img: "/quiz ended.png",
-                    },
-                ].map((step, index) => (
-                    <div key={index} className="space-y-6 flex flex-col items-center justify-center px-4">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            viewport={{ once: true }}
-                        >
-                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">
-                                {step.title}
-                            </h3>
-                            <p className="text-gray-300 text-sm sm:text-lg max-w-xl mx-auto">{step.desc}</p>
-                        </motion.div>
-                        <motion.img
-                            src={step.img}
-                            alt={step.title}
-                            className="rounded-xl w-full max-w-4xl h-auto mx-auto overflow-hidden border border-[#2F2F3F] shadow-xl"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            viewport={{ once: true }}
-                        />
-                    </div>
-                ))}
-            </section>
+    {[
+        {
+            title: "🎨 Create Your Quiz Room",
+            desc: "Build your quiz – write your own questions, mark correct answers, and name your battleground.",
+            img: "/create quiz room.png",
+        },
+        {
+            title: "⏳ Waiting Room",
+            desc: "Hang tight as players join your quiz. Preview settings and get ready to start the battle.",
+            img: "/waiting room.png",
+        },
+        {
+            title: "🚀 Enter the Quiz Arena",
+            desc: "Join your friends or random players in an intense real-time quiz face-off.",
+            img: "/enter quiz room.png",
+        },
+        {
+            title: "🏁 See Your Glory",
+            desc: "Review your results, compare stats, and challenge again to climb the leaderboard.",
+            img: "/quiz ended.png",
+        },
+    ].map((step, index) => (
+        <div key={index} className="space-y-6 flex flex-col items-center justify-center px-4">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">
+                    {step.title}
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-lg max-w-xl mx-auto">{step.desc}</p>
+            </motion.div>
+            <motion.img
+                src={step.img}
+                alt={step.title}
+                className="rounded-xl w-full max-w-4xl h-auto mx-auto overflow-hidden border border-[#2F2F3F] shadow-xl"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+            />
+        </div>
+    ))}
+</section>
+
 
             {/* How It Works */}
             <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-20">
