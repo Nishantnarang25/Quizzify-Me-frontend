@@ -312,7 +312,7 @@ export default function LandingPage() {
                 >
                     <button
                         onClick={() => setShowLogin(true)}
-                        className="bg-[#F179E1] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#e668d3] transition mt-6 text-sm sm:text-base"
+                        className="hidden sm:block bg-[#F179E1] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#e668d3] transition mt-6 text-sm sm:text-base"
                     >
                         Start Creating Your Quiz ➕
                     </button>
@@ -383,9 +383,9 @@ export default function LandingPage() {
                             {usernameTaken && (
                                 <p className="text-red-400 text-sm">That name’s taken — try another!</p>
                             )}
-                            <div className="hidden sm:block">
+                            <div>
                                 <button
-                                    onClick={() => setShowLogin(true)}
+                                type="submit"
 
                                     className="bg-gradient-to-r from-[#FBE483] to-[#F179E1] text-black font-bold px-6 py-2 rounded-full hover:scale-105 transition"
                                 >
