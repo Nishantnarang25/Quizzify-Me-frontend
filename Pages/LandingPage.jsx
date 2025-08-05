@@ -88,10 +88,11 @@ export default function LandingPage() {
                 <Confetti width={window.innerWidth} height={window.innerHeight} />
             )}
 
-            {/* Info Message */}
-            <div className="sm:hidden w-full text-center text-xs bg-[#FBE483] text-[#1F1F1F] py-2 px-4 font-semibold tracking-wide">
-                Quizzify Me is a web application game built using React.js, Node.js & WebSockets. Use a modern web browser for the best experience!
-            </div>
+          {/* Info Message */}
+<div className="sm:hidden w-full text-center text-xs bg-[#FBE483] text-[#1F1F1F] py-2 px-4 font-semibold tracking-wide">
+  Heads up! Quizzify Me is a desktop-only web game. To log in and play, please switch to a web browser on your computer.
+</div>
+
 
             {/* Navbar */}
             <nav className="w-full flex justify-between items-center px-4 sm:px-8 py-4 sm:py-6 max-w-5xl mx-auto">
