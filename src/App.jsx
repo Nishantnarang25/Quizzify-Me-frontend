@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Quiz from "../Pages/Quiz";
 import AttemptQuiz from "../Pages/AttemptQuiz";
@@ -10,7 +10,8 @@ import WaitingRoom from "../components/WaitingRoom";
 import LiveQuiz from "../components/LiveQuiz";
 import LandingPage from "../Pages/LandingPage";
 import EditQuiz from "../Pages/EditQuiz";
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
+import ProtectedRoute from "../context/ProtectedRoute";
 
 function App() {
   const { user } = useAuth();
@@ -26,19 +27,75 @@ function App() {
         )}
 
         {/* Main Content */}
-        <div className={`flex-1 p-4 ${user ? 'md:ml-64 md:mr-64' : ''}`}>
+        <div className={`flex-1 p-4 ${user ? "md:ml-64 md:mr-64" : ""}`}>
           <Routes>
-            {/* Protected Routes */}
-            <Route path="/" element={user ? <Dashboard /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/my-quizzes" element={user ? <MyQuizzes /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/live-mode" element={user ? <LiveModeQuiz /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/create-quiz" element={user ? <Quiz /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/quiz/waiting-room/:roomId" element={user ? <WaitingRoom /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/quiz/live-room/:roomId" element={user ? <LiveQuiz /> : <Navigate to="/about/QuizzifyMe" />} />
-            <Route path="/edit-quiz/:quizId" element={user ? <EditQuiz /> : <Navigate to="/about/QuizzifyMe" />} />
+            {/* ✅ Protected Routes */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-quizzes"
+              element={
+                <ProtectedRoute>
+                  <MyQuizzes />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/live-mode"
+              element={
+                <ProtectedRoute>
+                  <LiveModeQuiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/create-quiz"
+              element={
+                <ProtectedRoute>
+                  <Quiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/quiz/waiting-room/:roomId"
+              element={
+                <ProtectedRoute>
+                  <WaitingRoom />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/quiz/live-room/:roomId"
+              element={
+                <ProtectedRoute>
+                  <LiveQuiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-quiz/:quizId"
+              element={
+                <ProtectedRoute>
+                  <EditQuiz />
+                </ProtectedRoute>
+              }
+            />
 
-            {/* Public Routes */}
+            {/* 🌐 Public Routes */}
             <Route path="/quiz/:username/:quizId" element={<AttemptQuiz />} />
             <Route path="/about/QuizzifyMe" element={<LandingPage />} />
           </Routes>

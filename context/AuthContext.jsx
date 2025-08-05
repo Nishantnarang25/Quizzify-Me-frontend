@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect  } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 // createContext - this helps us to create a box where we wrap the AuthProvider
 // Create a context (like a shared box)
@@ -7,12 +7,14 @@ const AuthContext = createContext();
 // Provider component to wrap around the app
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // NEW - this tracks if auth is still loading
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    setLoading(false); // NEW - once check is done, stop loading
   }, []);
 
   const logout = () => {
@@ -21,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

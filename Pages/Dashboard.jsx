@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   if (loading)
     return (
-       <div className="min-h-screen flex items-center justify-center bg-[#1F1F1F]">
+      <div className="min-h-screen flex items-center justify-center bg-[#1F1F1F]">
         <div className="text-center">
           <PacmanLoader color="#F179E1" size={30} />
           <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#F179E1] to-[#9E6CFD] mt-4 font-semibold text-lg">
@@ -64,7 +64,6 @@ const Dashboard = () => {
   const earnedBadges = userData.badges || [];
   const xp = userData.xp || 0;
 
-  // Manual badge-to-image mapping (matches Supabase table)
   const badgeImageMap = {
     "Welcome Aboard!": "/welcome_abroad.png",
     "Quiz Champ": "/quiz_champ.png",
@@ -80,15 +79,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-[#1F1F1F] min-h-screen text-white px-6 py-6">
+    <div className="bg-[#1F1F1F] min-h-screen text-white px-4 sm:px-6 py-6">
       {/* Welcome */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-8 text-center"
+        className="mb-8 text-center sm:text-left"
       >
-        <h1 className="text-3xl font-bold text-white bg-clip-text text-left mb-2">
+        <h1 className="text-3xl font-bold text-white bg-clip-text mb-2">
           Welcome back, {userData.username}!
         </h1>
       </motion.div>
@@ -101,19 +100,18 @@ const Dashboard = () => {
         {earnedBadges.length === 0 ? (
           <p className="text-gray-400 text-lg italic">No badges earned yet. Keep going!</p>
         ) : (
-          <ul className="flex flex-wrap -m-1 sm:-m-1 items-center">
+          <ul className="flex flex-wrap justify-center sm:justify-start -m-1 sm:-m-1 items-center">
             {earnedBadges.map((badge, index) => {
               const imagePath = badgeImageMap[badge];
               return (
-                <li key={index} className="m-1 sm:m-1 transition-all duration-300 ease-in-out">
+                <li key={index} className="m-2 transition-all duration-300 ease-in-out">
                   {imagePath ? (
                     <img
                       src={imagePath}
                       alt={badge}
                       title={badge}
-                      className="w-52 h-52 object-contain transition-transform duration-300 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]   hover:[#FF8C00]"
+                      className="w-40 sm:w-52 h-40 sm:h-52 object-contain transition-transform duration-300 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]"
                     />
-
                   ) : (
                     <span className="text-sm text-gray-300">{badge}</span>
                   )}
@@ -124,20 +122,18 @@ const Dashboard = () => {
         )}
       </section>
 
-
-
-      {/* 🎮 Your Quizzes Section - Gamified & Polished */}
+      {/* Your Created Quizzes */}
       <section className="mb-16">
-        <h2 className="text-2xl font-medium text-center mb-6 text-transparent text-left bg-clip-text bg-gradient-to-r from-[#F179E1] to-[#9E6CFD]">
+        <h2 className="text-2xl font-medium mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#F179E1] to-[#9E6CFD]">
           🎮 Your Created Quizzes
         </h2>
 
         {quizzes.length === 0 ? (
-          <p className="text-center text-gray-400 text-lg">
+          <p className="text-center sm:text-left text-gray-400 text-lg">
             🚧 You haven’t created any quizzes yet. Time to get creative! 🛠️
           </p>
         ) : (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {quizzes.map((quiz) => (
               <Link
                 to={`/edit-quiz/${quiz.id}`}
@@ -159,7 +155,7 @@ const Dashboard = () => {
         )}
       </section>
 
-      {/* 📊 Latest Attempts - Gamified & Styled */}
+      {/* Latest Quiz Attempts */}
       <section className="mb-16">
         <h2 className="text-2xl font-medium mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#F179E1] to-[#877BFC]">
           📊 Latest Quiz Attempts
@@ -170,7 +166,7 @@ const Dashboard = () => {
             😔 No one has attempted your quizzes yet. Share them to see some action!
           </p>
         ) : (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {quizzes
               .filter((quiz) => quiz.attempts.length > 0)
               .map((quiz) => {
@@ -194,9 +190,7 @@ const Dashboard = () => {
           </div>
         )}
       </section>
-
-
-    </div >
+    </div>
   );
 };
 
